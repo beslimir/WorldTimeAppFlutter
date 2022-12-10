@@ -9,17 +9,30 @@ class ChooseLocation extends StatefulWidget {
 
 class _ChooseLocationState extends State<ChooseLocation> {
 
-  int counter = 0;
+  void getData() {
+    //simulate a network request (async)
+    Future.delayed(Duration(seconds: 3), () {
+      print('third');
+    });
+
+    //simulate a network request 2 (async)
+    Future.delayed(Duration(seconds: 2), () {
+      print('second');
+    });
+
+    print('first');
+  }
 
   @override
   void initState() {
+    print('initState function ran');
     super.initState();
-    print('InitState function ran');
+    getData();
   }
 
   @override
   Widget build(BuildContext context) {
-    print('Build function ran');
+    print('Build function');
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -29,12 +42,8 @@ class _ChooseLocationState extends State<ChooseLocation> {
         elevation: 0,
       ),
       body: ElevatedButton(
-        child: Text('Pressed me $counter times!'),
-        onPressed: () {
-          setState(() {
-            counter += 1;
-          });
-        },
+        child: Text('Press me!'),
+        onPressed: () {},
       ),
     );
   }
